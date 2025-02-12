@@ -195,12 +195,12 @@ namespace RtspClientSharp.Rtsp
 
                 try
                 {
-                    IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, 0);
+                    IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(_connectionParameters.LocalHost), _connectionParameters.LocalPort);
                     rtpClient.Bind(endPoint);
 
                     int rtpPort = ((IPEndPoint)rtpClient.LocalEndPoint).Port;
 
-                    endPoint = new IPEndPoint(IPAddress.Any, rtpPort + 1);
+                    endPoint = new IPEndPoint(IPAddress.Parse(_connectionParameters.LocalHost), rtpPort + 1);
 
                     try
                     {
@@ -208,7 +208,7 @@ namespace RtspClientSharp.Rtsp
                     }
                     catch (SocketException e) when (e.SocketErrorCode == SocketError.AddressAlreadyInUse)
                     {
-                        endPoint = new IPEndPoint(IPAddress.Any, 0);
+                        endPoint = new IPEndPoint(IPAddress.Parse(_connectionParameters.LocalHost), 0);
                         rtcpClient.Bind(endPoint);
                     }
 

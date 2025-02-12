@@ -27,6 +27,8 @@ namespace RtspClientSharp
         public TimeSpan CancelTimeout { get; set; } = TimeSpan.FromSeconds(5);
         public string UserAgent { get; set; } = DefaultUserAgent;
         public RtpTransportProtocol RtpTransport { get; set; } = RtpTransportProtocol.TCP;
+        public string LocalHost { get; set; }
+        public int LocalPort { get; set; }
 
         public ConnectionParameters(Uri connectionUri)
         {
